@@ -5,8 +5,8 @@ class Play extends Phaser.Scene {
 
     preload() {
         // load images/tile sprites
-        this.load.image('rocket', './assets/rocket.png');
-        this.load.image('spaceship', './assets/spaceship.png');
+        this.load.image('rocket', './assets/rocket.gif');
+        this.load.image('spaceship', './assets/spaceship.gif');
         this.load.image('starfield', './assets/starfield.png');
         // load spritesheet
         this.load.spritesheet('explosion', './assets/explosion.png', {
@@ -72,6 +72,40 @@ class Play extends Phaser.Scene {
         }
         this.scoreLeft = this.add.text(borderUISize + borderPadding, borderUISize + borderPadding*2, this.p1Score, scoreConfig);
 
+        // display FIRE UI
+        this.fire = this.add.text(borderUISize + borderPadding*30, borderUISize + borderPadding*2, 'FIRE', scoreConfig);
+
+        // display high score
+        let highScoreConfig = {
+            fontFamily: 'Courier',
+            fontSize: '28px',
+            backgroundColor: '#F3b141',
+            color: '#843605',
+            align: 'right',
+            padding: {
+                top: 5,
+                bottom: 5,
+            },
+            fixedWidth: 100
+        }
+        this.highScoreLeft = this.add.text(borderUISize + borderPadding*45.5, borderUISize + borderPadding*2, p1HighScore, highScoreConfig);
+
+        // display time remain
+        let timeConfig = {
+            fontFamily: 'Courier',
+            fontSize: '28px',
+            backgroundColor: '#F3b141',
+            color: '#843605',
+            align: 'right',
+            padding: {
+                top: 5,
+                bottom: 5,
+            },
+            fixedWidth: 50
+        }
+        this.timeRemain = game.settings.gameTimer;
+        this.timeLeft = this.add.text(borderUISize + borderPadding*65.5, borderUISize + borderPadding*2, '', timeConfig);
+
         // GAME OVER flag
         this.gameOver = false;
 
@@ -108,6 +142,10 @@ class Play extends Phaser.Scene {
             this.ship01.update();           // update spaceships (x3)
             this.ship02.update();
             this.ship03.update();
+
+            // check time elapsed of the clock
+            this.timeRemain = ((game.settings.gameTimer - this.clock.getElapsed()) / 1000).toFixed(0);
+            this.timeLeft.text = this.timeRemain;
         }
 
         // check collisions
@@ -123,6 +161,12 @@ class Play extends Phaser.Scene {
             this.p1Rocket.reset();
             this.shipExplode(this.ship01);
         }
+
+        // check high score and update it
+        if(this.p1Score > p1HighScore) {
+            p1HighScore = this.p1Score;
+        }
+        this.highScoreLeft.text = p1HighScore;
     }
 
     checkCollision(rocket, ship) {
@@ -136,7 +180,7 @@ class Play extends Phaser.Scene {
                return false;
            }
     }
-
+    
     shipExplode(ship) {
         // temporarily hide ship
         ship.alpha = 0;
