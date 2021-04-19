@@ -57,6 +57,9 @@ class Play extends Phaser.Scene {
         keyLEFT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
         keyRIGHT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);
         
+        // define mouse control
+        mouse = this.input.mousePointer;
+
         // animation config
         // this.anims.create({
         //     key: 'rFire',
