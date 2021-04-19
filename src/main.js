@@ -5,6 +5,7 @@
 ** 
 ** Track a high score that persists across scenes and display it in the UI (5)
 ** Implement the 'FIRE' UI text from the original game (5)
+** Add your own (copyright-free) background music to the Play scene (5)
 ** Allow the player to control the Rocket after it's fired (5)
 ** Display the time remaining (in seconds) on the screen (10)
 ** Create a new title screen (e.g., new artwork, typography, layout) (10)
