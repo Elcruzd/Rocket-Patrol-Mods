@@ -1,3 +1,10 @@
+/* 
+** Name: Zhendong Jiang
+** Porject: Rocket Patrol Mods
+** Date: April 16, 2021
+** 
+*/
+
 // Rocket (player) prefab
 class Rocket extends Phaser.GameObjects.Sprite {
     constructor(scene, x, y, texture, frame) {

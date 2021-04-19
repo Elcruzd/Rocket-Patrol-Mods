@@ -1,3 +1,10 @@
+/* 
+** Name: Zhendong Jiang
+** Porject: Rocket Patrol Mods
+** Date: April 16, 2021
+** 
+*/
+
 class Menu extends Phaser.Scene {
     constructor() {
         super("menuScene");
