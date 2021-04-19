@@ -5,15 +5,29 @@ class Play extends Phaser.Scene {
 
     preload() {
         // load images/tile sprites
-        this.load.image('rocket', './assets/rocket.gif');
-        this.load.image('spaceship', './assets/spaceship.gif');
+        this.load.image('rocket', './assets/rocket2.png');
+        this.load.image('spaceship', './assets/spaceship2.png');
         this.load.image('starfield', './assets/starfield.png');
-        // load spritesheet
-        this.load.spritesheet('explosion', './assets/explosion.png', {
+        
+        // load custom spritesheet
+
+        // this.load.spritesheet('rocket', './assets/rocket1.png', {
+        //     frameWidth: 32,
+        //     frameHeight: 32,
+        //     startFrame: 0,
+        //     endFrame: 3
+        // });
+        // this.load.spritesheet('spaceship', './assets/spaceship1.png', {
+        //     frameWidth: 64,
+        //     frameHeight: 32,
+        //     startFrame: 0,
+        //     endFrame: 3
+        // });
+        this.load.spritesheet('explosion', './assets/explosion1.png', {
             frameWidth: 64,
             frameHeight: 32,
             startFrame: 0,
-            endFrame: 9
+            endFrame: 7
         });
     }
 
@@ -44,11 +58,29 @@ class Play extends Phaser.Scene {
         keyRIGHT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);
         
         // animation config
+        // this.anims.create({
+        //     key: 'rFire',
+        //     frames: this.anims.generateFrameNumbers('rocket', {
+        //         start: 0,
+        //         end: 3,
+        //         first: 0
+        //     }),
+        //     frameRate: 30
+        // });
+        // this.anims.create({
+        //     key: 'sFire',
+        //     frames: this.anims.generateFrameNumbers('spaceship', {
+        //         start: 0,
+        //         end: 3,
+        //         first: 0
+        //     }),
+        //     frameRate: 30
+        // });
         this.anims.create({
             key: 'explode',
             frames: this.anims.generateFrameNumbers('explosion', {
                 start: 0,
-                end: 9,
+                end: 7,
                 first: 0
             }),
             frameRate: 30
