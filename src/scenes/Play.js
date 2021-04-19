@@ -58,6 +58,12 @@ class Play extends Phaser.Scene {
         keyRIGHT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);
         
         // define mouse control
+        // credit below:
+        // https://stackoverflow.com/questions/57937300/how-to-check-if-the-mouse-is-over-a-gameobject-in-phaser-3
+        // https://phaser.discourse.group/t/how-do-i-make-camera-follow-sprite-and-sprite-follow-mouse-at-the-same-time-solved/520
+        this.input.on('pointermove', function (pointer) {
+            this.p1Rocket.x = pointer.x
+        }, this);
         mouse = this.input.mousePointer;
 
         // animation config
@@ -108,7 +114,19 @@ class Play extends Phaser.Scene {
         this.scoreLeft = this.add.text(borderUISize + borderPadding, borderUISize + borderPadding*2, this.p1Score, scoreConfig);
 
         // display FIRE UI
-        this.fire = this.add.text(borderUISize + borderPadding*30, borderUISize + borderPadding*2, 'FIRE', scoreConfig);
+        let fireConfig = {
+            fontFamily: 'Courier',
+            fontSize: '28px',
+            backgroundColor: '#F3b141',
+            color: '#843605',
+            align: 'right',
+            padding: {
+                top: 5,
+                bottom: 5,
+            },
+            fixedWidth: 0
+        }
+        this.fire = this.add.text(borderUISize + borderPadding*30, borderUISize + borderPadding*2, 'FIRE', fireConfig);
 
         // display high score
         let highScoreConfig = {
@@ -121,7 +139,7 @@ class Play extends Phaser.Scene {
                 top: 5,
                 bottom: 5,
             },
-            fixedWidth: 100
+            fixedWidth: 0
         }
         this.highScoreLeft = this.add.text(borderUISize + borderPadding*45.5, borderUISize + borderPadding*2, p1HighScore, highScoreConfig);
 
@@ -136,7 +154,7 @@ class Play extends Phaser.Scene {
                 top: 5,
                 bottom: 5,
             },
-            fixedWidth: 50
+            fixedWidth: 0
         }
         this.timeRemain = game.settings.gameTimer;
         this.timeLeft = this.add.text(borderUISize + borderPadding*65.5, borderUISize + borderPadding*2, '', timeConfig);
